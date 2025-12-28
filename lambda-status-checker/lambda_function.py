@@ -105,6 +105,16 @@ def check_calendar_status():
 
 def lambda_handler(event, context):
     logger.info("Function started (Calendar Check Only).")
+    EXPECTED_SECRET = os.environ.get('MY_APP_SECRET')
+    
+    # Check for the custom header in the 'headers' object
+    actual_secret = event.get('headers', {}).get('x-secret-header')
+
+    if actual_secret != EXPECTED_SECRET:
+        return {
+            'statusCode': 403,
+            'body': 'Unauthorized'
+        }
 
     # 1. Check Calendar
     try:
