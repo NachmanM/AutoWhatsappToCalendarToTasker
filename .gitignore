@@ -1,5 +1,101 @@
+# =========================
+# Secrets & Environment Variables
+# =========================
+# CRITICAL: Never commit these files holding API keys or passwords.
 .env
+.env.*
+*.env
 
-# Dirs that WAHA create
-**/sessions/*
-**/media/*
+# Exception: Do not ignore the example template files so others know what vars are needed.
+! .env.example
+
+# Google/AWS credential files if stored locally for testing
+*.json
+!package.json
+!tsconfig.json
+gcp-key.json
+client_secret.json
+credentials.json
+
+
+# =========================
+# Python (Scheduler Bot & Lambda)
+# =========================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Testing & linting caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+
+# =========================
+# Node.js (If used locally outside Docker)
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# =========================
+# Docker & Project Runtime Data
+# =========================
+# WAHA persistent session data (contains sensitive WhatsApp login tokens)
+waha-service/waha-data/
+
+# Temporary downloaded images used by the Scheduler Bot for analysis
+scheduler-bot/waha_images/
+
+# Docker build contexts if very large (optional)
+#.dockerignore
+
+
+# =========================
+# AWS & Serverless Frameworks
+# =========================
+# SAM / Serverless framework build artifacts
+.aws-sam/
+.serverless/
+packaged.yaml
+template.yaml
+
+
+# =========================
+# IDEs & Editors
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+
+# =========================
+# OS Specific Files
+# =========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
