@@ -9,6 +9,13 @@
 # Exception: Do not ignore the example template files so others know what vars are needed.
 ! .env.example
 
+# =========================
+# WAHA Folders
+# =========================
+media/
+sessions/
+
+
 # Google/AWS credential files if stored locally for testing
 *.json
 !package.json

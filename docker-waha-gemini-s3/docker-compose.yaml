@@ -12,6 +12,7 @@ services:
       - WAHA_API_KEY=${WAHA_API_KEY}
 
       - WAHA_START_SESSION=default
+
       - WAHA_PRINT_QR=True
 
     # Add "dns" if you have a problem with resolving "web.whatsapp.com"
@@ -41,16 +42,16 @@ services:
 
   scheduler-bot:
     # CHANGE HERE: Use 'image' instead of 'build'
-    image: nachmanm/automation_whatsapp:0.5
+    build: ./automation_bot
     container_name: scheduler-bot
     restart: no
     depends_on:
       - waha
     env_file:
-      - ./automation_bot/.env
+      - ./automation_bot/utils/.env
     volumes:
       # Ensure this local folder still exists so you can inspect images if needed
-      - ./automation_bot/waha_images:/app/waha_images
+      - ./automation_bot:/app
 
 volumes:
   mongodb_data: {}
