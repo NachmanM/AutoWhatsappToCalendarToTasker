@@ -14,6 +14,7 @@ logger.setLevel(logging.INFO)
 # --- Configuration ---
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 SECRET_NAME = os.environ.get('SECRET_NAME', 'Google-Calendar-API-Key')
+SECRET_HEADER = 'SECRET_HEADER'
 REGION_NAME = "us-east-1" # Ensure this matches your AWS Region
 
 def get_secret(secret_name):
@@ -105,7 +106,9 @@ def check_calendar_status():
 
 def lambda_handler(event, context):
     logger.info("Function started (Calendar Check Only).")
-    EXPECTED_SECRET = os.environ.get('MY_APP_SECRET')
+
+    logger.info(get_secret(SECRET_HEADER))
+    EXPECTED_SECRET = json.loads(get_secret(SECRET_HEADER))[SECRET_HEADER]
     
     # Check for the custom header in the 'headers' object
     actual_secret = event.get('headers', {}).get('x-secret-header')
